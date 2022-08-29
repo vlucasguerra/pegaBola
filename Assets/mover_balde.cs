@@ -21,7 +21,4 @@ void Update() {
     transform.Translate(movement * speed * Time.deltaTime, Space.World);
 }
 
-
-
-
 }

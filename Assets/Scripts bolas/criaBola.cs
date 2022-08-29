@@ -6,14 +6,14 @@ public class criaBola : MonoBehaviour {
 	int i;
 
 	public Transform SpawnPoint;
-	// public GameObject bolaDiferente;
 
-	// private poolerDeObjetos poolerNovo;
 
 //==================================================
 
     public GameObject objetoNoPoller1;
     public GameObject objetoNoPoller2;
+    public GameObject objetoNoPoller3;
+    public GameObject objetoNoPoller4;
 
     public int quantidadeObjNoPool;
 
@@ -26,19 +26,53 @@ public class criaBola : MonoBehaviour {
         int i=0;
 		while (i<quantidadeObjNoPool) {
 
-			var instancia = Instantiate(objetoNoPoller1);
-            instancia.SetActive(false);
-            instancias.Add(instancia);
-			Debug.Log("criando bola vermelha no pooler: "+i);
-			i++;
-			if (i>=quantidadeObjNoPool){
-				break;
+			int numAleatorio = Random.Range(0, 100);
+
+
+			if(0< numAleatorio && numAleatorio <15){
+				var instancia = Instantiate(objetoNoPoller1);
+				instancia.SetActive(false);
+				instancias.Add(instancia);
+				Debug.Log("criando bola vermelha no pooler: "+i);
+				i++;
+				if (i>=quantidadeObjNoPool){
+					break;
+				}
 			}
 
-			var instancia2 = Instantiate(objetoNoPoller2);
-            instancia2.SetActive(false);
-            instancias.Add(instancia2);
-			Debug.Log("criando bola azul no pooler: "+i);
+			if(10< numAleatorio && numAleatorio <60){
+				var instancia = Instantiate(objetoNoPoller4);
+				instancia.SetActive(false);
+				instancias.Add(instancia);
+				Debug.Log("criando bola preta no pooler: "+i);
+				
+				i++;
+				if (i>=quantidadeObjNoPool){
+					break;
+				}
+			}
+
+			if(60< numAleatorio && numAleatorio <80){
+				var instancia = Instantiate(objetoNoPoller3);
+				instancia.SetActive(false);
+				instancias.Add(instancia);
+				Debug.Log("criando bola rosa no pooler: "+i);
+				i++;
+				if (i>=quantidadeObjNoPool){
+					break;
+				}
+			}
+
+			if(75 < numAleatorio && numAleatorio<100){
+				var instancia = Instantiate(objetoNoPoller2);
+				instancia.SetActive(false);
+				instancias.Add(instancia);
+				Debug.Log("criando bola azul no pooler: "+i);
+				i++;
+				if (i>=quantidadeObjNoPool){
+					break;
+				}
+			}			
 
 		}
     }
@@ -72,20 +106,12 @@ public class criaBola : MonoBehaviour {
 		if (Time.time > i){
 			i += 1;
 
-			GameObject bola1 = GetInstancia();
-			bola1.transform.rotation = SpawnPoint.transform.rotation;
+			GameObject bola = GetInstancia();
+			bola.transform.rotation = SpawnPoint.transform.rotation;
 			float xPos1 = Random.Range(-5f, 5f);
 			float zPos1 = Random.Range(-2f, 2f);
-			bola1.transform.position = SpawnPoint.transform.position + xPos1 * Vector3.right + zPos1 * Vector3.forward;
-			bola1.SetActive(true);
-			Debug.Log("criou a bola vermelha");
-
-			GameObject bola2 = GetInstancia();
-			bola2.transform.rotation = SpawnPoint.transform.rotation;
-			float xPos2 = Random.Range(-5f, 5f);
-			float zPos2 = Random.Range(-2f, 2f);
-			bola2.transform.position = SpawnPoint.transform.position + xPos2 * Vector3.right + zPos2 * Vector3.forward;
-			bola2.SetActive(true);
+			bola.transform.position = SpawnPoint.transform.position + xPos1 * Vector3.right + zPos1 * Vector3.forward;
+			bola.SetActive(true);
 		}
 	}
 }
