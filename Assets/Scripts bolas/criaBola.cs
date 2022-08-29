@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class criaBola : MonoBehaviour {
 	int i;
 
 	public Transform SpawnPoint;
+ 	// public UnityEngine.UI.Text tempoJogo;
 
 
 //==================================================
@@ -14,6 +17,9 @@ public class criaBola : MonoBehaviour {
     public GameObject objetoNoPoller2;
     public GameObject objetoNoPoller3;
     public GameObject objetoNoPoller4;
+
+
+
 
     public int quantidadeObjNoPool;
 
@@ -78,7 +84,7 @@ public class criaBola : MonoBehaviour {
     }
 
     public GameObject GetInstancia() {
-        Debug.Log("ligou getInstancia");
+        // Debug.Log("ligou getInstancia");
         GameObject instancia = instancias[ultimoIndiceDaInstancia];
 		ultimoIndiceDaInstancia++;
        // se o indice de instancia passar do tamanho do vetor de instanaicas, ele retorna para 0
@@ -104,6 +110,9 @@ public class criaBola : MonoBehaviour {
 		// Debug.Log("tempo i :"+i);
 
 		if (Time.time > i){
+
+	        // tempoJogo.text = "Tempo:"+(int)(Time.time);
+			
 			i += 1;
 
 			GameObject bola = GetInstancia();
@@ -112,6 +121,13 @@ public class criaBola : MonoBehaviour {
 			float zPos1 = Random.Range(-2f, 2f);
 			bola.transform.position = SpawnPoint.transform.position + xPos1 * Vector3.right + zPos1 * Vector3.forward;
 			bola.SetActive(true);
+
+			GameObject bola2 = GetInstancia();
+			bola2.transform.rotation = SpawnPoint.transform.rotation;
+			float xPos2 = Random.Range(-5f, 5f);
+			float zPos2 = Random.Range(-2f, 2f);
+			bola2.transform.position = SpawnPoint.transform.position + xPos2 * Vector3.right + zPos2 * Vector3.forward;
+			bola2.SetActive(true);			
 		}
 	}
 }
